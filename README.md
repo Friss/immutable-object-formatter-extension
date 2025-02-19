@@ -2,7 +2,11 @@
 
 Transforms Immutable JS objects to a more readable format when they are logged to the console.
 
-[Install the Chrome Extension](https://chrome.google.com/webstore/detail/immutablejs-object-format/hgldghadipiblonfkkicmgcbbijnpeog)
+Now works with Chrome Extension Manifest v3.
+
+[Forked from mattzeunert](https://github.com/mattzeunert/immutable-object-formatter-extension)
+
+[Install the Chrome Extension](https://chromewebstore.google.com/)\* (Currently awaiting review)
 
 Based on [immutable-devtools](https://github.com/andrewdavey/immutable-devtools).
 
@@ -18,20 +22,12 @@ The Chrome extension will only work if you **enable Custom Formatters** in the D
 
 ## How it works
 
-The code in "/immutable-devtools" is essentially just a copy of `immutable-devtools`.
-
-The two main differences are:
-
-1. We can't use `instanceof Immutable.Record` to detect if an object is a record, since we don't have access to the Immutable module that's loaded on the page. (We only have access to the one loaded in the extension.)  
-  We can still identify Records correctly, but the way we do it means there's a chance that an internal change in how Immutable.JS works could break that.
-2. The code can be loaded and unloaded several times on the same page, so we can't rely on variables inside the modules to detect if the formatters have already been injected into the page. Instead I'm setting a `window.__ImmutableJSDevToolsFormattersInstalled` property.
-
-Then all that's left to do is to load the code in "devtools.js".
+The code in "/immutable-devtools" is essentially just a copy of `immutable-devtools` that is injected into the page. It also sets a flag `__ImmutableJSDevToolsFormattersInstalled` on the window to avoid installing the formatter more than once.
 
 ## Running the code locally
 
-1. `npm install`
-2. `npm run dev`
+1. `yarn install`
+2. `yarn build`
 3. Load the "/extension" directory as an unpacked Chrome extension
 4. Open "/test-page/index.html" to check everything looks as expected
 

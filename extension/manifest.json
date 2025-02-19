@@ -1,22 +1,19 @@
 {
   "name": "Immutable.js Object Formatter",
   "short_name": "Immutable.js Object Formatter",
-  "description": "Makes Immutable JS objects more readable when they are logged to the console.",
-  "version": "1.9.3",
-  "manifest_version": 2,
-  "minimum_chrome_version": "48.0",
+  "description": "Makes Immutable JS objects more readable when they are logged to the console. Now works with manifest v3",
+  "version": "1.0.0",
+  "manifest_version": 3,
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*", "file://*/*"],
       "js": ["content-script.js"],
       "all_frames": true,
-      "run_at": "document_start"
+      "run_at": "document_start",
+      "world": "MAIN"
     }
   ],
-  "devtools_page": "devtool.html",
-  "permissions": ["http://*/*", "http://*/*", "file://*/*"],
   "icons": {
     "128": "icon-128.png"
-  },
-  "web_accessible_resources": ["bundle.js"]
+  }
 }
